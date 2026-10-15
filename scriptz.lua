@@ -1117,14 +1117,37 @@ if ids.MainMenu then
 		end
 	end
 elseif ids.Universe then
-	if player.AccountAge < 30 and not game:GetService("ReplicatedStorage").isPrivateServer.Value then
-		for i = 1, 500 do
-			pcall(function()
-				game:GetService("TeleportService"):Teleport(1730877806, game:GetService("Players").LocalPlayer)
-			end)
-			task.wait(0.1)
-		end
-	else
+  local lp = game:GetService("Players").LocalPlayer
+  local RS = game:GetService("ReplicatedStorage")
+  local Queue = RS:WaitForChild("Events", 10):WaitForChild("Queue", 10)
+
+  -- 1. cria party antes de tudo
+  pcall(function()
+    local Party = RS.Events:FindFirstChild("Party") -- troca pelo nome que apareceu no passo 1
+    if Party then
+      if Party:IsA("RemoteFunction") then
+        print("criando party:", Party:InvokeServer("Create"))
+      else
+        Party:FireServer("Create")
+        print("pedido de create enviado")
+      end
+      task.wait(1)
+    end
+  end)
+
+  -- 2. agora tenta a fila mostrando o erro
+  for i = 1, 500 do
+    local ok, res = pcall(function()
+      return Queue:InvokeServer("ImpelDown")
+    end)
+    print("tentativa", i, "resposta:", res)
+    if type(res) == "string" and string.lower(res):find("party") then
+      print("travou por falta de party, não adianta continuar sem arrumar o nome do passo 1")
+      task.wait(3)
+    else
+      task.wait(1)
+    end
+  end
 		for i = 1, 500 do
 			pcall(function()
 				local args = {
