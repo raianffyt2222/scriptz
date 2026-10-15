@@ -60,7 +60,7 @@ end
 local function createCore()
 	local Players = cloneref(game:GetService("Players"))
 	local HttpService = cloneref(game:GetService("HttpService"))
-	local virtualInputManager = Instance.new("VirtualInputManager")
+	local virtualInputManager = cloneref(game:GetService("VirtualInputManager"))
 	local UserInputService = cloneref(game:GetService("UserInputService"))
 	local Core = {}
 	local config
@@ -3894,7 +3894,7 @@ local function createAutoMerchant()
 	local HttpService = cloneref(game:GetService("HttpService"))
 	local GuiService = cloneref(game:GetService("GuiService"))
 	local UserInputService = cloneref(game:GetService("UserInputService"))
-	local virtualInputManager = Instance.new("VirtualInputManager")
+	local virtualInputManager = cloneref(game:GetService("VirtualInputManager"))
 	local mousemoveabs = mousemoveabs
 	local mouse1click = mouse1click
 	local getconnections = getconnections
@@ -5410,7 +5410,7 @@ local function createTeleport()
 	local Players = cloneref(game:GetService("Players"))
 	local RunService = cloneref(game:GetService("RunService"))
 	local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
-	local virtualInputManager = Instance.new("VirtualInputManager")
+	local virtualInputManager = cloneref(game:GetService("VirtualInputManager"))
 	local localPlayer = Players.LocalPlayer
 	local speed = 89
 	local forwardKeyDisabled = false
@@ -5923,7 +5923,7 @@ local function createIslandTeleports()
 		task.spawn(function()
 			Teleport.DoSafeTeleport(worldScrollPos)
 			task.wait(0.5)
-			local virtualInputManager = Instance.new("VirtualInputManager")
+			local virtualInputManager = cloneref(game:GetService("VirtualInputManager"))
 			virtualInputManager:SendKeyEvent(true, Enum.KeyCode.LeftAlt, false, nil)
 			task.wait(2)
 			virtualInputManager:SendKeyEvent(false, Enum.KeyCode.LeftAlt, false, nil)
@@ -8319,7 +8319,7 @@ local function createFruitInventory()
 	local Players = cloneref(game:GetService("Players"))
 	local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 	local HttpService = cloneref(game:GetService("HttpService"))
-	local virtualInputManager = Instance.new("VirtualInputManager")
+	local virtualInputManager = cloneref(game:GetService("VirtualInputManager"))
 	local localPlayer = Players.LocalPlayer
 	local fruitRarity
 	local fruitPngs
@@ -13454,7 +13454,7 @@ local function createFishing()
 			local f13 = Enum.KeyCode.F13
 
 			task.spawn(function()
-				local virtualInputManager = Instance.new("VirtualInputManager")
+				local virtualInputManager = cloneref(game:GetService("VirtualInputManager"))
 
 				while running and shouldContinue() do
 					task.wait(240)
